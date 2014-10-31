@@ -13,10 +13,11 @@ from api.controller.MemoryController import MemoryController
 from api.controller.CommandsController import CommandsController
 from api.controller.TopCommandsController import TopCommandsController
 from api.controller.TopKeysController import TopKeysController
+from api.controller.GoogleUdsController import GoogleUdsController
 
 if __name__ == "__main__":
     define("port", default=8888, help="run on the given port", type=int)
-    define("debug", default=0, help="debug mode", type=int)
+    define("debug", default=1, help="debug mode", type=int)
     tornado.options.parse_command_line()
 
     # Bootup
@@ -27,6 +28,7 @@ if __name__ == "__main__":
     (r"/api/commands", CommandsController),
     (r"/api/topcommands", TopCommandsController),
     (r"/api/topkeys", TopKeysController),
+    (r"/js/libs/google/uds/", GoogleUdsController),
     (r"/(.*)", BaseStaticFileHandler, {"path": "www"})
     ]
 
